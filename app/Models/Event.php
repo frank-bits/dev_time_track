@@ -9,7 +9,7 @@ class Event extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'description','date','status','rate_id', 'project_id','start_time','end_time','task_id'];
+    protected $fillable = ['name', 'description','date','status','rate_id', 'project_id','start_time','end_time','task_id','user_id'];
 
     public function rate(): \Illuminate\Database\Eloquent\Relations\HasOne
     {

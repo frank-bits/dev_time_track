@@ -19,34 +19,43 @@ class EventController extends Controller
     {
         $user = Auth::user();
         $user = User::find($user->id);
-        $user->with('events','rates','projects')->get();
+        $user->with('events', 'rates', 'projects')->get();
 
-    
+
         return Inertia::render('Event/EventList', [
-      
+
             'user' => $user,
             'activities' => Activity::all()->map->only('id', 'name'),
         ]);
-
     }
 
     public function store(CreateEventRequest $request)
     {
         $request->validated();
-      $request->start_time = Carbon::parse($request->start_time)->format('Y-m-d H:i:s');
-     
-        $request->merge(['user_id' => Auth::id()]);
+
+        $user = Auth::user();
+
         $rate = Rate::where('activity_id', $request->activity_id)
-        ->where('user_id', Auth::id())
-        ->where('project_id', $request->project_id)
-        ->first();
+            ->where('user_id', $user->id)
+            ->where('project_id', $request->project_id)
+            ->first();
         $request->merge(['rate_id' => $rate->id]);
-        $event = Event::create($request->all());
-        dd($event);
 
-     //   Auth::user()->events()->create($request->all());
+        $event = Event::create(
+            [
+                'start_time' => Carbon::parse($request->start_time)->format('Y-m-d H:i:s'),
+                'end_time'  => Carbon::parse($request->end_time)->format('Y-m-d H:i:s') ?? null,
+                'user_id' =>  $user->id,
+                'project_id' => $request->project_id,
+                'rate_id' => $request->rate_id,
+                'task_id'  => $request->task_id,
+                'notes' => $request->notes
 
-     return to_route('edit.show', $event->id);
+            ]
+        );
 
+        return inertia('Dashboard', [
+            'event' => $event
+        ]);
     }
 }

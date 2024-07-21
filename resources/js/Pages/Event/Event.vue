@@ -34,10 +34,6 @@ const updatePassword = () => {
     });
 };
 
-// defineProps<{
-//     user?: Object;
-//     activities?: Object;
-// }>();
 </script>
 <template>
   <div class="py-12">
@@ -182,7 +178,7 @@ const updatePassword = () => {
               </div>
               <div class="flex items-center">
                 <button
-                  class="bg-orange-300 hover:bg-orange-500 text-white font-bold py-2 px-4 rounded"
+                  class="bg-orange-500 hover:bg-orange-300 text-white font-bold py-2 px-4 rounded"
                   @click="form.post(route('events.store'))" 
                 >
                     Save

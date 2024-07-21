@@ -22,7 +22,7 @@ class CreateEventRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'start_time' => ['required', 'date'],
+            'start_time' => ['nullable', 'date'],
             'end_time' => ['nullable','date'],
             'activity_id' => ['required', 'exists:activities,id'],
             'project_id' => ['nullable', 'exists:projects,id'],
