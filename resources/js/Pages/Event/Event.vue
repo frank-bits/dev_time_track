@@ -5,7 +5,8 @@ import { Head } from "@inertiajs/vue3";
 import VueDatePicker from "@vuepic/vue-datepicker";
 import "@vuepic/vue-datepicker/dist/main.css";
 import PrimaryButtonVue from "@/Components/PrimaryButton.vue";
-import InputError from '@/Components/InputError.vue';
+import InputError from "@/Components/InputError.vue";
+
 const form = useForm({
   start_time: "",
   end_time: "",
@@ -15,25 +16,18 @@ const form = useForm({
   date: "",
 });
 
-const updatePassword = () => {
-    form.post(route('event.store'), {
-        preserveScroll: true,
-        onSuccess: () => {
-            form.reset();
-        },
-        onError: () => {
-            if (form.errors.start_time) {
-                form.reset('password', 'password_confirmation');
-                passwordInput.value?.focus();
-            }
-            if (form.errors.current_password) {
-                form.reset('current_password');
-                currentPasswordInput.value?.focus();
-            }
-        },
-    });
+const saveEvent = () => {
+  form.post(route("event.store"), {
+    preserveScroll: true,
+    onSuccess: () => {
+      form.reset();
+    },
+    onError: () => {
+      if (form.errors.start_time) {
+      }
+    },
+  });
 };
-
 </script>
 <template>
   <div class="py-12">
@@ -46,7 +40,7 @@ const updatePassword = () => {
             >
               <div class="mb-8">
                 <div class="text-gray-900 font-bold text-xl mb-2">
-                  <form class="w-full max-w-lg">
+                  <form @submit.prevent="saveEvent" class="w-full max-w-lg">
                     <div class="flex flex-wrap -mx-3 mb-2">
                       <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                         <label
@@ -62,7 +56,7 @@ const updatePassword = () => {
                             v-model="form.activity_id"
                           >
                             <option value="1">Development</option>
-                             <!-- <option>DevOps</option>
+                            <!-- <option>DevOps</option>
                              <option>QA</option> -->
                           </select>
                           <div
@@ -163,7 +157,6 @@ const updatePassword = () => {
                           class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                           id="grid-password"
                           type="text"
-                        
                         />
                         <!-- <p class="text-gray-600 text-xs italic">
                           Make it as long and as crazy as you'd like
@@ -179,9 +172,9 @@ const updatePassword = () => {
               <div class="flex items-center">
                 <button
                   class="bg-orange-500 hover:bg-orange-300 text-white font-bold py-2 px-4 rounded"
-                  @click="form.post(route('events.store'))" 
+                  @click="form.post(route('events.store'))"
                 >
-                    Save
+                  Save
                 </button>
                 <!-- <img
                   class="w-10 h-10 rounded-full mr-4"

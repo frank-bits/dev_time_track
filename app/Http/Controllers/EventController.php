@@ -53,9 +53,8 @@ class EventController extends Controller
 
             ]
         );
-
-        return inertia('Dashboard', [
-            'event' => $event
-        ]);
+        
+        return back()->with('message' ,'Event Created!');
+     
     }
 }

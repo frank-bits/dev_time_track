@@ -20,6 +20,7 @@
         "vue-tsc": "^2.0.24"
     },
     "dependencies": {
-        "@vuepic/vue-datepicker": "^9.0.1"
+        "@vuepic/vue-datepicker": "^9.0.1",
+        "vue-toast-notification": "^3.1.2"
     }
 }
