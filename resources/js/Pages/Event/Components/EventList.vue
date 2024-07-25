@@ -3,6 +3,7 @@ import { ref, onMounted, onBeforeMount, watch } from "vue";
 import { useEventStore } from "@/Store/eventStore";
 import UpdateEventModal from "../UpdateEventModal.vue";
 import { router } from "@inertiajs/vue3";
+import DeleteEventModal from "../DeleteEventModal.vue";
 const store = useEventStore();
 
 const events = ref();
@@ -119,12 +120,13 @@ router.on("success", (event) => {
                 </div>
                 <div class="mx-auto grid grid-cols-2 gap-5 m-2 p-2">
                   <UpdateEventModal :event="event" />
-                  <button
+                  <DeleteEventModal :block="event" />
+                  <!-- <button
                     type="submit"
                     class="w-full text-white bg-orange-600 hover:bg-orange-300 font-bold focus:outline-none rounded-lg text-lg m-1 py-2.5 text-center"
                   >
                     Delete
-                  </button>
+                  </button> -->
                 </div>
               </div>
 
