@@ -98,6 +98,6 @@ class EventController extends Controller
     {
         $event->delete();
 
-        return back()->with('message', 'Event Created!');
+        return back()->with('message', 'Event Deleted!');
     }
 }
