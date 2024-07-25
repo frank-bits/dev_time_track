@@ -7,7 +7,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
+    return Inertia::render('Auth/Login', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
@@ -29,8 +29,10 @@ Route::middleware('auth')->group(function () {
 
   
 });
+
 Route::prefix('events')->group( function () {
     Route::get('/', [EventController::class, 'index'])->name('events.index');
+    Route::get('/recent', [EventController::class, 'recent'])->name('events.recent');
     Route::get('/create', [EventController::class, 'create'])->name('events.create');
     Route::post('/', [EventController::class, 'store'])->name('events.store');
     Route::get('/{event}', [EventController::class, 'show'])->name('events.show');

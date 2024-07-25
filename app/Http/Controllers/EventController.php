@@ -21,7 +21,6 @@ class EventController extends Controller
         $user = User::find($user->id);
         $user->with('events', 'rates', 'projects')->get();
 
-
         return Inertia::render('Event/EventList', [
 
             'user' => $user,
@@ -56,5 +55,21 @@ class EventController extends Controller
         
         return back()->with('message' ,'Event Created!');
      
+    }
+
+    public function recent()
+    {
+
+        $user = Auth::user();
+        $user = User::find($user->id);
+       
+        $events = Event::where('user_id', $user->id)
+            ->orderBy('start_time', 'desc')
+            ->limit(5)
+            ->get();
+
+     
+
+        return response()->json($events);
     }
 }

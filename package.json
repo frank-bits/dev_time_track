@@ -21,6 +21,7 @@
     },
     "dependencies": {
         "@vuepic/vue-datepicker": "^9.0.1",
+        "flowbite": "^2.4.1",
         "vue-toast-notification": "^3.1.2"
     }
 }

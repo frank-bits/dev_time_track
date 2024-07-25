@@ -11,27 +11,28 @@ import { useToast } from "vue-toast-notification";
 import "vue-toast-notification/dist/theme-sugar.css";
 import Inertia from "@inertiajs/vue3";
 import { usePage } from "@inertiajs/vue3";
-import TostNotify from "@/Components/ToastNotify.vue"
+import TostNotify from "@/Components/ToastNotify.vue";
 const page = usePage();
 const showToast = ref(false);
-import { router } from '@inertiajs/vue3'
+import { router } from "@inertiajs/vue3";
 
 // cosnt message = ref(<string>$page.props.flash.message);
 const $toast = useToast();
-const message = ref('');
+const message = ref("");
 
-router.on('success', (event) => {
-  console.log(`Success! Event Created!`)
-                  
-  message.value = page.props.flash.message; 
-  $toast.open({
-                    message: message.value,
-                    type: "success",
-                    duration: 500 * 10,
-                    dismissible: true,
-                    position: "top-right",
-                  })
-})
+router.on("success", (event) => {
+  if (page.props.flash.message) {
+    message.value = page.props.flash.message;
+
+    $toast.open({
+      message: message.value,
+      type: "success",
+      duration: 500 * 10,
+      dismissible: true,
+      position: "top-right",
+    });
+  }
+});
 
 const showingNavigationDropdown = ref(false);
 
@@ -42,7 +43,6 @@ defineProps<{
 
 <template>
   <div>
-    
     <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
       <nav
         class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700"
@@ -59,7 +59,7 @@ defineProps<{
                   />
                 </Link>
               </div>
-         
+
               <!-- Navigation Links -->
               <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                 <NavLink
