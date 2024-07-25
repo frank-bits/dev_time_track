@@ -20,17 +20,13 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
-
-  
 });
 
-Route::prefix('events')->group( function () {
+Route::prefix('events')->group(function () {
     Route::get('/', [EventController::class, 'index'])->name('events.index');
     Route::get('/recent', [EventController::class, 'recent'])->name('events.recent');
     Route::get('/create', [EventController::class, 'create'])->name('events.create');
@@ -40,4 +36,4 @@ Route::prefix('events')->group( function () {
     Route::put('/{event}', [EventController::class, 'update'])->name('events.update');
     Route::delete('/{event}', [EventController::class, 'destroy'])->name('events.destroy');
 })->middleware(['auth', 'verified']);
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

@@ -22,6 +22,7 @@ class CreateEventRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'id' => ['sometimes', 'exists:events,id'],
             'start_time' => ['nullable', 'date'],
             'end_time' => ['nullable','date'],
             'activity_id' => ['required', 'exists:activities,id'],

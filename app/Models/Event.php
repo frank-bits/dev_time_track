@@ -13,7 +13,7 @@ class Event extends Model
 
     public function rate(): \Illuminate\Database\Eloquent\Relations\HasOne
     {
-        return $this->hasOne(Rate::class);
+        return $this->hasOne(Rate::class, 'id', 'rate_id');
     }
 
     public function project(): \Illuminate\Database\Eloquent\Relations\BelongsTo

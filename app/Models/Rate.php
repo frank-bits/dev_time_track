@@ -21,9 +21,9 @@ class Rate extends Model
         return $this->belongTo(Event::class);
     }
 
-    public function event(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function event(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->hasMany(Event::class);
+        return $this->belongsTo(Event::class,'rate_id','id');
     }
 
     public function project(): \Illuminate\Database\Eloquent\Relations\BelongsTo

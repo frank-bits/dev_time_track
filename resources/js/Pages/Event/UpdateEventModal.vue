@@ -7,12 +7,11 @@ import SecondaryButton from "@/Components/SecondaryButton.vue";
 import TextInput from "@/Components/TextInput.vue";
 import { useForm } from "@inertiajs/vue3";
 import { nextTick, ref } from "vue";
-import Event from "./Event.vue";
+import EditEvent from "./EditEvent.vue";
 
 const showEditModal = ref(false);
-const passwordInput = ref<HTMLInputElement | null>(null);
 
-const openCreateEventModal = () => {
+const openUpdateEventModal = () => {
   showEditModal.value = true;
 };
 
@@ -21,28 +20,20 @@ const closeModal = () => {
 };
 
 defineProps<{
-  event?: Object;
+  event: Object;
 }>();
 </script>
 <template>
-  <!-- <button
-    class="bg-orange-500 hover:bg-orange-300 text-white font-bold py-2 px-4 rounded-sm"
-    @click="openCreateEventModal"
+  <button
+    class="w-full text-white bg-orange-400 hover:bg-orange-200 font-bold focus:outline-none rounded-lg text-lg m-1 py-2.5 text-center"
+    @click="openUpdateEventModal"
   >
     Update Event
-  </button> -->
-  <button
-    type="button"
-    class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-    @click="closeModal"
-  >
-    Extra small
   </button>
-
   <Modal :show="showEditModal" @close="closeModal">
     <div class="relative">
       <div>
-        <Event />
+        <EditEvent :block="event" />
       </div>
       <div>
         <button

@@ -24,9 +24,9 @@ const closeModal = () => {
 <template>
   <button
     class="bg-orange-500 hover:bg-orange-300 text-white font-bold py-2 px-4 rounded"
-    @click="openEditEventModal"
+    @click="openCreateEventModal"
   >
-    Update Event
+    Create Event
   </button>
   <Modal :show="showCreateModal" @close="closeModal">
     <div class="relative">

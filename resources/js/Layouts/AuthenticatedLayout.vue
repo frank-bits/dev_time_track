@@ -6,17 +6,14 @@ import DropdownLink from "@/Components/DropdownLink.vue";
 import NavLink from "@/Components/NavLink.vue";
 import ResponsiveNavLink from "@/Components/ResponsiveNavLink.vue";
 import { Link } from "@inertiajs/vue3";
-import { Head } from "@inertiajs/vue3";
 import { useToast } from "vue-toast-notification";
 import "vue-toast-notification/dist/theme-sugar.css";
-import Inertia from "@inertiajs/vue3";
 import { usePage } from "@inertiajs/vue3";
-import TostNotify from "@/Components/ToastNotify.vue";
+
 const page = usePage();
 const showToast = ref(false);
 import { router } from "@inertiajs/vue3";
 
-// cosnt message = ref(<string>$page.props.flash.message);
 const $toast = useToast();
 const message = ref("");
 
